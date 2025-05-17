@@ -6,7 +6,7 @@ function App() {
 
   // Fetch todos from backend
   useEffect(() => {
-    fetch('/api/todos')
+    fetch('https://mern-todo-backend-bjnu.onrender.com/api/todos')
       .then(res => res.json())
       .then(data => setTodos(data));
   }, []);
@@ -14,7 +14,7 @@ function App() {
   // Add new todo
   const addTodo = async () => {
     if (!text.trim()) return;
-    const res = await fetch('/api/todos', {
+    const res = await fetch('https://mern-todo-backend-bjnu.onrender.com/api/todos', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text }),
@@ -26,14 +26,14 @@ function App() {
 
   // Toggle completed
   const toggleTodo = async (id) => {
-    const res = await fetch(`/api/todos/${id}`, { method: 'PATCH' });
+    const res = await fetch(`https://mern-todo-backend-bjnu.onrender.com/api/todos/${id}`, { method: 'PATCH' });
     const updatedTodo = await res.json();
     setTodos(todos.map(t => (t._id === id ? updatedTodo : t)));
   };
 
   // Delete todo
   const deleteTodo = async (id) => {
-    await fetch(`/api/todos/${id}`, { method: 'DELETE' });
+    await fetch(`https://mern-todo-backend-bjnu.onrender.com/api/todos/${id}`, { method: 'DELETE' });
     setTodos(todos.filter(t => t._id !== id));
   };
 
